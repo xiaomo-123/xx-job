@@ -1,0 +1,144 @@
+[
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 1 \"1\" 执行成功",
+    "details": {
+      "step_index": 0,
+      "step_name": "1",
+      "url": "http://localhost:3000/api/auth/login",
+      "method": "POST",
+      "status_code": 200,
+      "response": {
+        "success": true,
+        "message": "登录成功",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+        }
+      },
+      "extracted_params": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+      },
+      "headers": {},
+      "body": {
+        "account": "admin",
+        "password": "123456"
+      }
+    },
+    "id": 2,
+    "timestamp": "2025-12-13 02:07:42"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 2 \"2\" 执行成功",
+    "details": {
+      "step_index": 1,
+      "step_name": "2",
+      "url": "http://localhost:3000/api/email/accounts",
+      "method": "GET",
+      "status_code": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "parent": {
+            "accountId": 1,
+            "email": "admin@artpayaws.site",
+            "name": "admin",
+            "status": 0,
+            "latestEmailTime": null,
+            "createTime": "2025-12-04 11:14:14",
+            "userId": 1,
+            "isDel": 0
+          },
+          "children": [
+            {
+              "accountId": 17,
+              "email": "oIZZFlnY1xLl8ql@artpayaws.site",
+              "name": "oIZZFlnY1xLl8ql",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-06 09:52:03",
+              "userId": 1,
+              "isDel": 0
+            },
+            {
+              "accountId": 18,
+              "email": "vVwJqAOg6IFCI1c@artpayaws.site",
+              "name": "vVwJqAOg6IFCI1c",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-06 10:33:29",
+              "userId": 1,
+              "isDel": 0
+            },
+            {
+              "accountId": 19,
+              "email": "bhmUuyiVr4QIsuz@artpayaws.site",
+              "name": "bhmUuyiVr4QIsuz",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-06 11:08:40",
+              "userId": 1,
+              "isDel": 0
+            },
+            {
+              "accountId": 20,
+              "email": "Ajvz2GiB6chgPQj@artpayaws.site",
+              "name": "Ajvz2GiB6chgPQj",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-06 11:08:48",
+              "userId": 1,
+              "isDel": 0
+            },
+            {
+              "accountId": 21,
+              "email": "tpaqV3Ih4uO9OXt@artpayaws.site",
+              "name": "tpaqV3Ih4uO9OXt",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-06 11:08:52",
+              "userId": 1,
+              "isDel": 0
+            }
+          ],
+          "total": 6
+        }
+      },
+      "extracted_params": {},
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+      },
+      "body": {}
+    },
+    "id": 3,
+    "timestamp": "2025-12-13 02:07:42"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "start",
+    "status": "running",
+    "message": "任务 \"1\" 开始执行",
+    "details": {},
+    "id": 1,
+    "timestamp": "2025-12-13 02:07:41"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "complete",
+    "status": "success",
+    "message": "任务 \"1\" 执行成功",
+    "details": {
+      "execution_time": "2025-12-13 02:07:42"
+    },
+    "id": 4,
+    "timestamp": "2025-12-13 02:07:42"
+  }
+]

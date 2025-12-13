@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>执行日志 - XX-Job</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>XX-Job 任务定时执行器</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/tasks">任务管理</a></li>
+                    <li><a href="/logs" class="active">执行日志</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="logs-header">
+                <h2>执行日志</h2>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="task-filter">任务筛选</label>
+                        <select id="task-filter">
+                            <option value="">所有任务</option>
+                            <!-- 任务选项将通过JavaScript动态加载 -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="status-filter">状态筛选</label>
+                        <select id="status-filter">
+                            <option value="">所有状态</option>
+                            <option value="success">成功</option>
+                            <option value="failure">失败</option>
+                            <option value="running">运行中</option>
+                        </select>
+                    </div>
+                    <button id="refresh-btn" class="btn btn-secondary">刷新</button>
+                    <button id="clear-logs-btn" class="btn btn-danger">清除所有日志</button>
+                </div>
+            </section>
+
+            <section class="logs-list">
+                <div id="logs-container">
+                    <!-- 日志列表将通过JavaScript动态加载 -->
+                </div>
+                <div class="pagination">
+                    <button id="prev-page" class="btn btn-secondary" disabled>上一页</button>
+                    <span id="page-info">第 1 页</span>
+                    <button id="next-page" class="btn btn-secondary">下一页</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- 日志详情模态框 -->
+        <div id="log-detail-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>日志详情</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="log-detail-content">
+                        <!-- 日志详情将通过JavaScript动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 XX-Job. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/logs.js"></script>
+</body>
+</html>

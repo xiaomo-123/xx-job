@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务管理 - XX-Job</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>XX-Job 任务定时执行器</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/tasks" class="active">任务管理</a></li>
+                    <li><a href="/logs">执行日志</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="tasks-header">
+                <h2>任务管理</h2>
+                <button id="add-task-btn" class="btn btn-primary">创建新任务</button>
+            </section>
+
+            <section class="tasks-list">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>任务名称</th>
+                            <th>类型</th>
+                            <th>调度规则</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasks-tbody">
+                        <!-- 任务列表将通过JavaScript动态加载 -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <!-- 任务表单模态框 -->
+        <div id="task-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">创建新任务</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <label for="task-name">任务名称</label>
+                            <input type="text" id="task-name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>任务类型</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="type" value="cron" checked> 定时任务</label>
+                                <label><input type="radio" name="type" value="interval"> 循环任务</label>
+                            </div>
+                        </div>
+
+                        <!-- Cron配置 -->
+                        <div id="cron-config" class="form-group">
+                            <label for="cron-expression">Cron表达式</label>
+                            <div class="cron-presets">
+                                <select id="cron-preset">
+                                    <option value="">自定义</option>
+                                    <option value="0 * * * *">每小时</option>
+                                    <option value="0 0 * * *">每天零点</option>
+                                    <option value="0 10 * * *">每天10点</option>
+                                    <option value="0 0 * * 0">每周日零点</option>
+                                    <option value="0 0 1 * *">每月1号零点</option>
+                                </select>
+                            </div>
+                            <input type="text" id="cron-expression" name="cron_expression" placeholder="0 10 * * *">
+                            <small>格式: 分 时 日 月 周 (例如: 0 10 * * * 表示每天10点)</small>
+                        </div>
+
+                        <!-- 间隔配置 -->
+                        <div id="interval-config" class="form-group" style="display: none;">
+                            <label for="interval-seconds">执行间隔（秒）</label>
+                            <input type="number" id="interval-seconds" name="interval_seconds" min="1" value="60">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="retry-times">失败重试次数</label>
+                            <select id="retry-times" name="retry_times">
+                                <option value="0">不重试</option>
+                                <option value="1" selected>重试1次</option>
+                                <option value="2">重试2次</option>
+                                <option value="3">重试3次</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>API步骤配置</label>
+                            <div id="steps-container">
+                                <!-- API步骤将通过JavaScript动态添加 -->
+                            </div>
+                            <button type="button" id="add-step-btn" class="btn btn-secondary">添加步骤</button>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">保存任务</button>
+                            <button type="button" id="cancel-btn" class="btn btn-secondary">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- API步骤模板 -->
+        <template id="step-template">
+            <div class="step-config">
+                <div class="step-header">
+                    <h4>步骤 <span class="step-number"></span></h4>
+                    <button type="button" class="remove-step-btn btn btn-danger">删除</button>
+                </div>
+
+                <div class="form-group">
+                    <label>步骤名称</label>
+                    <input type="text" class="step-name" name="step_name" placeholder="例如: 获取用户信息">
+                </div>
+
+                <div class="form-group">
+                    <label>请求方法</label>
+                    <select class="step-method" name="method">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>请求URL</label>
+                    <input type="text" class="step-url" name="url" placeholder="例如: https://api.example.com/users/${user_id}">
+                    <small>可以使用 ${参数名} 引用前面步骤提取的参数</small>
+                </div>
+
+                <div class="form-group">
+                    <label>请求头 (JSON格式)</label>
+                    <textarea class="step-headers" name="headers" rows="3" placeholder='{"Content-Type": "application/json", "Authorization": "Bearer token"}'></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>请求体 (JSON格式，GET请求留空)</label>
+                    <textarea class="step-body" name="body" rows="4" placeholder='{"id": "${user_id}", "name": "test"}'></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>参数提取配置</label>
+                    <div class="extract-params-container">
+                        <div class="extract-param">
+                            <input type="text" class="param-name" placeholder="参数名">
+                            <input type="text" class="param-path" placeholder="JSON路径，如 $.data.id">
+                            <select class="param-type">
+                                <option value="string">字符串</option>
+                                <option value="number">数字</option>
+                                <option value="boolean">布尔值</option>
+                            </select>
+                            <button type="button" class="remove-param-btn btn btn-danger">删除</button>
+                        </div>
+                    </div>
+                    <button type="button" class="add-param-btn btn btn-secondary">添加参数</button>
+                </div>
+
+                <div class="form-group">
+                    <label>Curl命令预览</label>
+                    <textarea class="curl-preview" rows="4" readonly></textarea>
+                </div>
+            </div>
+        </template>
+
+        <footer>
+            <p>© 2023 XX-Job. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/tasks.js"></script>
+</body>
+</html>
