@@ -86,31 +86,62 @@ def get_task(task_id):
 @app.route('/api/tasks', methods=['POST'])
 def create_task():
     """创建新任务"""
-    task_data = request.json
+    try:
+        # 记录原始请求数据，便于调试
+        print(f"收到的原始请求数据: {request.data}")
 
-    # 验证必填字段
-    if not task_data or not task_data.get('name'):
-        return jsonify({'error': '任务名称不能为空'}), 400
+        # 获取请求数据
+        task_data = request.json
+        print(f"解析后的任务数据: {task_data}")
 
-    # 验证任务类型
-    task_type = task_data.get('type')
-    if task_type not in ['cron', 'interval']:
-        return jsonify({'error': '无效的任务类型'}), 400
+        # 验证必填字段
+        if not task_data:
+            return jsonify({'error': '请求数据不能为空'}), 400
 
-    # 验证调度配置
-    if task_type == 'cron' and not task_data.get('cron_expression'):
-        return jsonify({'error': 'Cron表达式不能为空'}), 400
-    elif task_type == 'interval' and not task_data.get('interval_seconds'):
-        return jsonify({'error': '执行间隔不能为空'}), 400
+        name = task_data.get('name', '').strip()
+        if not name:
+            return jsonify({'error': '任务名称不能为空'}), 400
 
-    # 验证API步骤
-    steps = task_data.get('steps', [])
-    if not steps:
-        return jsonify({'error': '至少需要配置一个API步骤'}), 400
+        # 确保名称被正确处理
+        task_data['name'] = name
 
-    # 添加任务
-    task_id = scheduler.add_task(task_data)
-    return jsonify({'id': task_id, 'message': '任务创建成功'})
+        # 验证任务类型
+        task_type = task_data.get('type')
+        if task_type not in ['cron', 'interval']:
+            return jsonify({'error': '无效的任务类型'}), 400
+
+        # 验证调度配置
+        if task_type == 'cron' and not task_data.get('cron_expression'):
+            return jsonify({'error': 'Cron表达式不能为空'}), 400
+        elif task_type == 'interval' and not task_data.get('interval_seconds'):
+            return jsonify({'error': '执行间隔不能为空'}), 400
+
+        # 验证API步骤
+        steps = task_data.get('steps', [])
+        if not steps:
+            return jsonify({'error': '至少需要配置一个API步骤'}), 400
+
+        # 验证每个步骤的必填字段
+        for i, step in enumerate(steps):
+            if not step.get('name'):
+                return jsonify({'error': f'步骤 {i+1} 的名称不能为空'}), 400
+            if not step.get('url'):
+                return jsonify({'error': f'步骤 {i+1} 的URL不能为空'}), 400
+            if not step.get('method'):
+                return jsonify({'error': f'步骤 {i+1} 的请求方法不能为空'}), 400
+
+        # 添加任务
+        print(f"准备添加任务: {task_data}")
+        task_id = scheduler.add_task(task_data)
+        print(f"任务创建成功，ID: {task_id}")
+        return jsonify({'id': task_id, 'message': '任务创建成功'})
+
+    except Exception as e:
+        # 捕获所有异常并返回错误信息
+        print(f"创建任务时发生错误: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'创建任务失败: {str(e)}'}), 500
 
 @app.route('/api/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
@@ -118,8 +149,15 @@ def update_task(task_id):
     task_data = request.json
 
     # 验证必填字段
-    if not task_data or not task_data.get('name'):
+    if not task_data:
+        return jsonify({'error': '请求数据不能为空'}), 400
+
+    name = task_data.get('name', '').strip()
+    if not name:
         return jsonify({'error': '任务名称不能为空'}), 400
+
+    # 确保名称被正确处理
+    task_data['name'] = name
 
     # 验证任务类型
     task_type = task_data.get('type')
@@ -136,6 +174,15 @@ def update_task(task_id):
     steps = task_data.get('steps', [])
     if not steps:
         return jsonify({'error': '至少需要配置一个API步骤'}), 400
+
+    # 验证每个步骤的必填字段
+    for i, step in enumerate(steps):
+        if not step.get('name'):
+            return jsonify({'error': f'步骤 {i+1} 的名称不能为空'}), 400
+        if not step.get('url'):
+            return jsonify({'error': f'步骤 {i+1} 的URL不能为空'}), 400
+        if not step.get('method'):
+            return jsonify({'error': f'步骤 {i+1} 的请求方法不能为空'}), 400
 
     # 更新任务
     success = scheduler.update_task(task_id, task_data)

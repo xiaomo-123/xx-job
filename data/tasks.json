@@ -58,5 +58,23 @@
     "id": 2,
     "created_at": "2025-12-12 21:58:59",
     "status": "deleted"
+  },
+  {
+    "name": "22",
+    "type": "cron",
+    "retry_times": 1,
+    "steps": [
+      {
+        "name": "22",
+        "method": "GET",
+        "url": "http://localhost:3000/api/gemini/refresh-tokens",
+        "extract_params": [],
+        "headers": {}
+      }
+    ],
+    "cron_expression": "0 10 * * * ",
+    "id": 3,
+    "created_at": "2025-12-13 22:11:57",
+    "status": "active"
   }
 ]

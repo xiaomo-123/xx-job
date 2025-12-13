@@ -360,7 +360,10 @@ function collectStepsData() {
     const steps = [];
     const stepElements = document.querySelectorAll('#steps-container .step-config');
 
-    stepElements.forEach(stepElement => {
+    console.log('开始收集步骤数据，找到步骤数量:', stepElements.length);
+
+    stepElements.forEach((stepElement, index) => {
+        console.log(`处理步骤 ${index + 1}:`);
         const step = {
             name: stepElement.querySelector('.step-name').value,
             method: stepElement.querySelector('.step-method').value,
@@ -368,19 +371,31 @@ function collectStepsData() {
             extract_params: []
         };
 
+        console.log(`步骤 ${index + 1} 基本数据:`, {
+            name: step.name,
+            method: step.method,
+            url: step.url
+        });
+
         // 解析请求头
         try {
-            step.headers = JSON.parse(stepElement.querySelector('.step-headers').value || '{}');
+            const headersText = stepElement.querySelector('.step-headers').value || '{}';
+            step.headers = JSON.parse(headersText);
+            console.log(`步骤 ${index + 1} 请求头解析成功:`, step.headers);
         } catch (e) {
             step.headers = {};
+            console.error(`步骤 ${index + 1} 请求头解析失败:`, e);
         }
 
         // 解析请求体
         if (step.method !== 'GET') {
             try {
-                step.body = JSON.parse(stepElement.querySelector('.step-body').value || '{}');
+                const bodyText = stepElement.querySelector('.step-body').value || '{}';
+                step.body = JSON.parse(bodyText);
+                console.log(`步骤 ${index + 1} 请求体解析成功:`, step.body);
             } catch (e) {
                 step.body = {};
+                console.error(`步骤 ${index + 1} 请求体解析失败:`, e);
             }
         }
 
@@ -400,9 +415,11 @@ function collectStepsData() {
             }
         });
 
+        console.log(`步骤 ${index + 1} 完整数据:`, step);
         steps.push(step);
     });
 
+    console.log('收集到的所有步骤数据:', steps);
     return steps;
 }
 
@@ -432,6 +449,11 @@ function saveTask(e) {
     const url = taskId ? `/api/tasks/${taskId}` : '/api/tasks';
     const method = taskId ? 'PUT' : 'POST';
 
+    // 添加调试日志
+    console.log('准备发送任务数据:', taskData);
+    console.log('请求URL:', url);
+    console.log('请求方法:', method);
+
     fetch(url, {
         method: method,
         headers: {
@@ -440,21 +462,24 @@ function saveTask(e) {
         body: JSON.stringify(taskData)
     })
     .then(response => {
+        console.log('收到响应:', response);
         if (!response.ok) {
             return response.json().then(data => {
+                console.error('服务器返回错误:', data);
                 throw new Error(data.error || '操作失败');
             });
         }
         return response.json();
     })
     .then(data => {
+        console.log('任务保存成功:', data);
         showNotification(taskId ? '任务更新成功' : '任务创建成功', 'success');
         hideTaskModal();
         loadTasks();
     })
     .catch(error => {
-        console.error('Error saving task:', error);
-        showNotification('保存任务失败', 'error');
+        console.error('保存任务时发生错误:', error);
+        showNotification(`保存任务失败: ${error.message}`, 'error');
     });
 }
 
