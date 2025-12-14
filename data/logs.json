@@ -4,10 +4,10 @@
     "task_name": "1",
     "event": "step",
     "status": "success",
-    "message": "步骤 1 \"1\" 执行成功",
+    "message": "步骤 1 \"login\" 执行成功",
     "details": {
       "step_index": 0,
-      "step_name": "1",
+      "step_name": "login",
       "url": "http://localhost:3000/api/auth/login",
       "method": "POST",
       "status_code": 200,
@@ -15,11 +15,247 @@
         "success": true,
         "message": "登录成功",
         "data": {
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
         }
       },
       "extracted_params": {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+      },
+      "headers": {},
+      "body": {
+        "account": "admin",
+        "password": "123456"
+      }
+    },
+    "id": 7,
+    "timestamp": "2025-12-13 19:46:08"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 2 \"del\" 执行成功",
+    "details": {
+      "step_index": 1,
+      "step_name": "del",
+      "url": "http://localhost:3000/api/email/accounts/all",
+      "method": "DELETE",
+      "status_code": 200,
+      "response": {
+        "success": true,
+        "message": "所有邮箱账户删除成功",
+        "data": {
+          "tempMailDeleted": [],
+          "geminiMailDeleted": [],
+          "errors": []
+        }
+      },
+      "extracted_params": {},
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+      },
+      "body": {}
+    },
+    "id": 8,
+    "timestamp": "2025-12-13 19:46:08"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 3 \"add\" 执行成功",
+    "details": {
+      "step_index": 2,
+      "step_name": "add",
+      "url": "http://localhost:3000/api/email/accounts/batch",
+      "method": "POST",
+      "status_code": 201,
+      "response": {
+        "success": true,
+        "message": "批量创建完成，成功: 10，失败: 0",
+        "data": {
+          "created": [
+            {
+              "accountId": 47,
+              "email": "XYpgO2KsnDDceUl@artpayaws.site",
+              "name": "XYpgO2KsnDDceUl",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:06",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 51,
+              "email": "kU84KraDnALxx12@artpayaws.site",
+              "name": "kU84KraDnALxx12",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:06",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 50,
+              "email": "TQZfTMleaqUYC18@artpayaws.site",
+              "name": "TQZfTMleaqUYC18",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:06",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 48,
+              "email": "Ap1o4tGqVfJsMTQ@artpayaws.site",
+              "name": "Ap1o4tGqVfJsMTQ",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:06",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 49,
+              "email": "sZdScdNM3p6KREt@artpayaws.site",
+              "name": "sZdScdNM3p6KREt",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:06",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 52,
+              "email": "7Y2QHTWK6yDzCyF@artpayaws.site",
+              "name": "7Y2QHTWK6yDzCyF",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:07",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 55,
+              "email": "qAQZ7JN3O5mmsyz@artpayaws.site",
+              "name": "qAQZ7JN3O5mmsyz",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:07",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 54,
+              "email": "H2znWcdZIGEmOd6@artpayaws.site",
+              "name": "H2znWcdZIGEmOd6",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:07",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 53,
+              "email": "c6xr2Fq6wTXgBy2@artpayaws.site",
+              "name": "c6xr2Fq6wTXgBy2",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:07",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 56,
+              "email": "QcDhXKbXMKT49lt@artpayaws.site",
+              "name": "QcDhXKbXMKT49lt",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:45:07",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            }
+          ],
+          "failed": [],
+          "totalRequested": 10,
+          "totalCreated": 10,
+          "totalFailed": 0
+        }
+      },
+      "extracted_params": {},
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+      },
+      "body": {
+        "count": 10
+      }
+    },
+    "id": 9,
+    "timestamp": "2025-12-13 19:46:08"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "failure",
+    "message": "步骤 4 \"shua\" 执行失败: 请求超时",
+    "details": {
+      "step_index": 3,
+      "step_name": "shua",
+      "url": "http://localhost:3000/api/gemini/refresh-tokens",
+      "method": "GET",
+      "status_code": null,
+      "response": null,
+      "extracted_params": {},
+      "headers": {},
+      "body": {}
+    },
+    "id": 10,
+    "timestamp": "2025-12-13 19:46:08"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "start",
+    "status": "running",
+    "message": "任务 \"1\" 开始执行",
+    "details": {},
+    "id": 6,
+    "timestamp": "2025-12-13 19:45:05"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 1 \"login\" 执行成功",
+    "details": {
+      "step_index": 0,
+      "step_name": "login",
+      "url": "http://localhost:3000/api/auth/login",
+      "method": "POST",
+      "status_code": 200,
+      "response": {
+        "success": true,
+        "message": "登录成功",
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNmI0YzA3ZjgtZTJiOS00Y2RjLThlNzAtMjJlZWY5N2RhY2RhIiwiaWF0IjoxNzY1NjgzODM5fQ.ISdNn88FuBFkf1u6bPyPajw1DWHho0QVfhh7D8KG6Gc"
+        }
+      },
+      "extracted_params": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNmI0YzA3ZjgtZTJiOS00Y2RjLThlNzAtMjJlZWY5N2RhY2RhIiwiaWF0IjoxNzY1NjgzODM5fQ.ISdNn88FuBFkf1u6bPyPajw1DWHho0QVfhh7D8KG6Gc"
       },
       "headers": {},
       "body": {
@@ -28,96 +264,194 @@
       }
     },
     "id": 2,
-    "timestamp": "2025-12-13 02:07:42"
+    "timestamp": "2025-12-13 19:44:01"
   },
   {
     "task_id": 1,
     "task_name": "1",
     "event": "step",
     "status": "success",
-    "message": "步骤 2 \"2\" 执行成功",
+    "message": "步骤 2 \"del\" 执行成功",
     "details": {
       "step_index": 1,
-      "step_name": "2",
-      "url": "http://localhost:3000/api/email/accounts",
-      "method": "GET",
+      "step_name": "del",
+      "url": "http://localhost:3000/api/email/accounts/all",
+      "method": "DELETE",
       "status_code": 200,
       "response": {
         "success": true,
+        "message": "所有邮箱账户删除成功",
         "data": {
-          "parent": {
-            "accountId": 1,
-            "email": "admin@artpayaws.site",
-            "name": "admin",
-            "status": 0,
-            "latestEmailTime": null,
-            "createTime": "2025-12-04 11:14:14",
-            "userId": 1,
-            "isDel": 0
-          },
-          "children": [
-            {
-              "accountId": 17,
-              "email": "oIZZFlnY1xLl8ql@artpayaws.site",
-              "name": "oIZZFlnY1xLl8ql",
-              "status": 0,
-              "latestEmailTime": null,
-              "createTime": "2025-12-06 09:52:03",
-              "userId": 1,
-              "isDel": 0
-            },
-            {
-              "accountId": 18,
-              "email": "vVwJqAOg6IFCI1c@artpayaws.site",
-              "name": "vVwJqAOg6IFCI1c",
-              "status": 0,
-              "latestEmailTime": null,
-              "createTime": "2025-12-06 10:33:29",
-              "userId": 1,
-              "isDel": 0
-            },
-            {
-              "accountId": 19,
-              "email": "bhmUuyiVr4QIsuz@artpayaws.site",
-              "name": "bhmUuyiVr4QIsuz",
-              "status": 0,
-              "latestEmailTime": null,
-              "createTime": "2025-12-06 11:08:40",
-              "userId": 1,
-              "isDel": 0
-            },
-            {
-              "accountId": 20,
-              "email": "Ajvz2GiB6chgPQj@artpayaws.site",
-              "name": "Ajvz2GiB6chgPQj",
-              "status": 0,
-              "latestEmailTime": null,
-              "createTime": "2025-12-06 11:08:48",
-              "userId": 1,
-              "isDel": 0
-            },
-            {
-              "accountId": 21,
-              "email": "tpaqV3Ih4uO9OXt@artpayaws.site",
-              "name": "tpaqV3Ih4uO9OXt",
-              "status": 0,
-              "latestEmailTime": null,
-              "createTime": "2025-12-06 11:08:52",
-              "userId": 1,
-              "isDel": 0
-            }
-          ],
-          "total": 6
+          "tempMailDeleted": [],
+          "geminiMailDeleted": [],
+          "errors": []
         }
       },
       "extracted_params": {},
       "headers": {
-        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiMzQwNWE5YWYtNzkyOC00NmE1LWJiOGQtNmE4NThmYzQyYjRjIiwiaWF0IjoxNzY1NjIwNDYxfQ.VxbZHfKITP0Oz9h9KoYOzfbLCAMCtpryocFGeCIfE30"
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNmI0YzA3ZjgtZTJiOS00Y2RjLThlNzAtMjJlZWY5N2RhY2RhIiwiaWF0IjoxNzY1NjgzODM5fQ.ISdNn88FuBFkf1u6bPyPajw1DWHho0QVfhh7D8KG6Gc"
       },
       "body": {}
     },
     "id": 3,
-    "timestamp": "2025-12-13 02:07:42"
+    "timestamp": "2025-12-13 19:44:01"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "step",
+    "status": "success",
+    "message": "步骤 3 \"add\" 执行成功",
+    "details": {
+      "step_index": 2,
+      "step_name": "add",
+      "url": "http://localhost:3000/api/email/accounts/batch",
+      "method": "POST",
+      "status_code": 201,
+      "response": {
+        "success": true,
+        "message": "批量创建完成，成功: 10，失败: 0",
+        "data": {
+          "created": [
+            {
+              "accountId": 37,
+              "email": "qoHjcxgdeSBFb1C@artpayaws.site",
+              "name": "qoHjcxgdeSBFb1C",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 38,
+              "email": "yVVQO5pH9z2YFVA@artpayaws.site",
+              "name": "yVVQO5pH9z2YFVA",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 41,
+              "email": "WLBrNmPanG5ttiU@artpayaws.site",
+              "name": "WLBrNmPanG5ttiU",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 39,
+              "email": "fw3SOuHCLREyumn@artpayaws.site",
+              "name": "fw3SOuHCLREyumn",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 40,
+              "email": "3FH2OtvTgl2F50F@artpayaws.site",
+              "name": "3FH2OtvTgl2F50F",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 42,
+              "email": "dVqGfqrWjyJDyu5@artpayaws.site",
+              "name": "dVqGfqrWjyJDyu5",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 45,
+              "email": "bQx7AsE0giBlkdK@artpayaws.site",
+              "name": "bQx7AsE0giBlkdK",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 43,
+              "email": "xKPWE9n6jxYFK4E@artpayaws.site",
+              "name": "xKPWE9n6jxYFK4E",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 44,
+              "email": "KwRncpSB0VJv9IV@artpayaws.site",
+              "name": "KwRncpSB0VJv9IV",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            },
+            {
+              "accountId": 46,
+              "email": "MfO6NZHWSFC7II0@artpayaws.site",
+              "name": "MfO6NZHWSFC7II0",
+              "status": 0,
+              "latestEmailTime": null,
+              "createTime": "2025-12-14 03:44:00",
+              "userId": 1,
+              "isDel": 0,
+              "addVerifyOpen": false
+            }
+          ],
+          "failed": [],
+          "totalRequested": 10,
+          "totalCreated": 10,
+          "totalFailed": 0
+        }
+      },
+      "extracted_params": {},
+      "headers": {
+        "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNmI0YzA3ZjgtZTJiOS00Y2RjLThlNzAtMjJlZWY5N2RhY2RhIiwiaWF0IjoxNzY1NjgzODM5fQ.ISdNn88FuBFkf1u6bPyPajw1DWHho0QVfhh7D8KG6Gc"
+      },
+      "body": {
+        "count": 10
+      }
+    },
+    "id": 4,
+    "timestamp": "2025-12-13 19:44:01"
+  },
+  {
+    "task_id": 1,
+    "task_name": "1",
+    "event": "complete",
+    "status": "success",
+    "message": "任务 \"1\" 执行成功",
+    "details": {
+      "execution_time": "2025-12-13 19:44:01"
+    },
+    "id": 5,
+    "timestamp": "2025-12-13 19:44:01"
   },
   {
     "task_id": 1,
@@ -127,18 +461,225 @@
     "message": "任务 \"1\" 开始执行",
     "details": {},
     "id": 1,
-    "timestamp": "2025-12-13 02:07:41"
+    "timestamp": "2025-12-13 19:43:59"
   },
   {
     "task_id": 1,
     "task_name": "1",
     "event": "complete",
-    "status": "success",
-    "message": "任务 \"1\" 执行成功",
+    "status": "failure",
+    "message": "任务 \"1\" 执行失败: 步骤4失败: 请求超时",
     "details": {
-      "execution_time": "2025-12-13 02:07:42"
+      "steps": [
+        {
+          "step_index": 0,
+          "step_name": "login",
+          "result": {
+            "success": true,
+            "response": {
+              "success": true,
+              "message": "登录成功",
+              "data": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+              }
+            },
+            "status_code": 200,
+            "error": null,
+            "extracted_params": {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+            },
+            "url": "http://localhost:3000/api/auth/login",
+            "method": "POST",
+            "headers": {},
+            "body": {
+              "account": "admin",
+              "password": "123456"
+            }
+          }
+        },
+        {
+          "step_index": 1,
+          "step_name": "del",
+          "result": {
+            "success": true,
+            "response": {
+              "success": true,
+              "message": "所有邮箱账户删除成功",
+              "data": {
+                "tempMailDeleted": [],
+                "geminiMailDeleted": [],
+                "errors": []
+              }
+            },
+            "status_code": 200,
+            "error": null,
+            "extracted_params": {},
+            "url": "http://localhost:3000/api/email/accounts/all",
+            "method": "DELETE",
+            "headers": {
+              "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+            },
+            "body": {}
+          }
+        },
+        {
+          "step_index": 2,
+          "step_name": "add",
+          "result": {
+            "success": true,
+            "response": {
+              "success": true,
+              "message": "批量创建完成，成功: 10，失败: 0",
+              "data": {
+                "created": [
+                  {
+                    "accountId": 47,
+                    "email": "XYpgO2KsnDDceUl@artpayaws.site",
+                    "name": "XYpgO2KsnDDceUl",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:06",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 51,
+                    "email": "kU84KraDnALxx12@artpayaws.site",
+                    "name": "kU84KraDnALxx12",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:06",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 50,
+                    "email": "TQZfTMleaqUYC18@artpayaws.site",
+                    "name": "TQZfTMleaqUYC18",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:06",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 48,
+                    "email": "Ap1o4tGqVfJsMTQ@artpayaws.site",
+                    "name": "Ap1o4tGqVfJsMTQ",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:06",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 49,
+                    "email": "sZdScdNM3p6KREt@artpayaws.site",
+                    "name": "sZdScdNM3p6KREt",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:06",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 52,
+                    "email": "7Y2QHTWK6yDzCyF@artpayaws.site",
+                    "name": "7Y2QHTWK6yDzCyF",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:07",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 55,
+                    "email": "qAQZ7JN3O5mmsyz@artpayaws.site",
+                    "name": "qAQZ7JN3O5mmsyz",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:07",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 54,
+                    "email": "H2znWcdZIGEmOd6@artpayaws.site",
+                    "name": "H2znWcdZIGEmOd6",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:07",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 53,
+                    "email": "c6xr2Fq6wTXgBy2@artpayaws.site",
+                    "name": "c6xr2Fq6wTXgBy2",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:07",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  },
+                  {
+                    "accountId": 56,
+                    "email": "QcDhXKbXMKT49lt@artpayaws.site",
+                    "name": "QcDhXKbXMKT49lt",
+                    "status": 0,
+                    "latestEmailTime": null,
+                    "createTime": "2025-12-14 03:45:07",
+                    "userId": 1,
+                    "isDel": 0,
+                    "addVerifyOpen": false
+                  }
+                ],
+                "failed": [],
+                "totalRequested": 10,
+                "totalCreated": 10,
+                "totalFailed": 0
+              }
+            },
+            "status_code": 201,
+            "error": null,
+            "extracted_params": {},
+            "url": "http://localhost:3000/api/email/accounts/batch",
+            "method": "POST",
+            "headers": {
+              "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInRva2VuIjoiNDI1ZjA5MDMtMzg3NC00MmU0LTkxYjYtZGRmMTczZmIwNmI2IiwiaWF0IjoxNzY1NjgzOTA1fQ.4DmO_jxrDsMkuO_yYFvEbx9l1TXff8btFt0J1dx09Ns"
+            },
+            "body": {
+              "count": 10
+            }
+          }
+        },
+        {
+          "step_index": 3,
+          "step_name": "shua",
+          "result": {
+            "success": false,
+            "response": null,
+            "status_code": null,
+            "error": "请求超时",
+            "extracted_params": {},
+            "url": "http://localhost:3000/api/gemini/refresh-tokens",
+            "method": "GET",
+            "headers": {},
+            "body": {}
+          }
+        }
+      ]
     },
-    "id": 4,
-    "timestamp": "2025-12-13 02:07:42"
+    "id": 11,
+    "timestamp": "2025-12-13 19:46:08"
   }
 ]

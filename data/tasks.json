@@ -5,7 +5,7 @@
     "retry_times": 1,
     "steps": [
       {
-        "name": "1",
+        "name": "login",
         "method": "POST",
         "url": "http://localhost:3000/api/auth/login",
         "extract_params": [
@@ -22,13 +22,33 @@
         }
       },
       {
-        "name": "2",
-        "method": "GET",
-        "url": "http://localhost:3000/api/email/accounts",
+        "name": "del",
+        "method": "DELETE",
+        "url": "http://localhost:3000/api/email/accounts/all",
         "extract_params": [],
         "headers": {
           "Authorization": "${token}"
+        },
+        "body": {}
+      },
+      {
+        "name": "add",
+        "method": "POST",
+        "url": "http://localhost:3000/api/email/accounts/batch",
+        "extract_params": [],
+        "headers": {
+          "Authorization": "${token}"
+        },
+        "body": {
+          "count": 10
         }
+      },
+      {
+        "name": "shua",
+        "method": "GET",
+        "url": "http://localhost:3000/api/gemini/refresh-tokens",
+        "extract_params": [],
+        "headers": {}
       }
     ],
     "interval_seconds": 10,
@@ -61,7 +81,7 @@
   },
   {
     "name": "22",
-    "type": "cron",
+    "type": "interval",
     "retry_times": 1,
     "steps": [
       {
@@ -72,9 +92,10 @@
         "headers": {}
       }
     ],
-    "cron_expression": "0 10 * * * ",
+    "cron_expression": "0 0 * * * ",
     "id": 3,
     "created_at": "2025-12-13 22:11:57",
-    "status": "active"
+    "status": "paused",
+    "interval_seconds": 3600
   }
 ]
